@@ -23,32 +23,50 @@ public class Tree{
   }
 
   public TreeNode deleteNodeBST(TreeNode root, int data){
-    //traverse tree until node is found, then delete
-    //if it has children, reassign them to root of deleted node
-
-    //case 1 no child
-
-    //case 2 one child
-
-    //case 3 two children --> find minimum value of right subtree
-    //or min value of left subtree-
-    //and replace value of node with new min value, delete duplicate
-    //reduce case 3 to 2 or 1
 
     if(root == null){
-      return;
-    }
-    else if(data < root.val){
+      return null;
+    }else if(data < root.val){
       root.left = deleteNodeBST(root.left, data);
     }else if(data > root.val){
       root.right = deleteNodeBST(root.right, data);
     }else{
-      //case 1: no child
-      if(root.left == null && root.right == null){
 
-      }
+    	if(root.left == null){
+    		return root.right;
+    	}else if(root.right == null){
+    		return root.left;
+    	}
+
+    	TreeNode minNode = findMin(root.right);
+    	root.val = minNode.val;
+    	root.right = deleteNode(root.right, root.val);
     }
+    return root;
+  }
 
+  public TreeNode insertNode(TreeNode root, int data){
+  	//traverse until you find where it belongs
+  	if(root == null){
+  		root = new TreeNode(data);
+  		return root;
+  	}else if(data < root.val){
+  		root.left = insertNode(root.left, data);
+  	}else if(data > root.val){
+  		root.right = insertNode(root.right, data);
+  	}
+  	return root;
+  }
+
+  //check if a tree is balanced
+    
+
+  //finds the minimum of a node by traversing the left subtree
+  public TreeNode findMinBST(TreeNode node){
+  	while(node.left != null){
+  		node = node.left;
+  	}
+  	return node;
   }
 
   /**
@@ -94,6 +112,7 @@ public class Tree{
   public breadthFirstSearch(TreeNode node){
     if(node == null) return;
     Queue<TreeNode> queue = new LinkedList();
+    //enqueue
     queue.add(node);
     while(!queue.isEmpty()){
 
@@ -105,7 +124,7 @@ public class Tree{
       if(current.right != null){
           queue.add(current.right);
       }
-      //poll retrieves and removes head element of queue
+      //poll retrieves and removes head element of queue, dequeue
       queue.poll();
     }
   }
