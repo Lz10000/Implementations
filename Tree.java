@@ -58,6 +58,25 @@ public class Tree{
   	return root;
   }
 
+  //checks if a tree t is a subtree of tree s, exact nodes
+  public boolean isSubtree(TreeNode x, TreeNode y){
+      traverse(x, y);
+  }
+
+  //checks to see if all nodes and child nodes in a tree are equal in val and length
+  public boolean equals(TreeNode x, TreeNode y){
+      if(x == null && y == null) return true;
+      if (x == null || y == null) return false;
+
+      //checks the rest of the child nodes
+      return x.val == y.val && equals(x.left, y.left) && equals(x.right, y.right);
+  }
+
+  //traverses the tree and looks for root nodes that are equal 
+  public boolean traverse(TreeNode x, TreeNode y){
+      return s != null && (equals(x, y) || traverse(x.left, y) || traverse(x.right, y));
+  }
+
   //check if a tree is balanced
     
 
