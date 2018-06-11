@@ -12,9 +12,10 @@ class Book {
   HashMap<String, Integer> counts;
 
   public Book(String[] words){
+    int count = 0;
     counts = new HashMap<String, Integer>();
     for(String w : words){
-      int count = counts.get(w);
+      count = counts.get(w);
       if(count == 0){
         counts.put(w, 1);
       }else{

@@ -81,9 +81,8 @@ public class Tree{
   public boolean isBalanced(TreeNode t){
     //left and right is balanced if diff is not more than 1
     if(t == null) return true;
-    
+    return Math.abs(maxDepth(t.left) - maxDepth(t.right)) <= 1 && isBalanced(t.left) && isBalanced(t.right);
   }
-
 
   //finds the minimum of a node by traversing the left subtree
   public TreeNode findMinBST(TreeNode node){
