@@ -72,13 +72,18 @@ public class Tree{
       return x.val == y.val && equals(x.left, y.left) && equals(x.right, y.right);
   }
 
-  //traverses the tree and looks for root nodes that are equal 
+  //traverses the tree and looks for root nodes that are equal
   public boolean traverse(TreeNode x, TreeNode y){
       return s != null && (equals(x, y) || traverse(x.left, y) || traverse(x.right, y));
   }
 
   //check if a tree is balanced
+  public boolean isBalanced(TreeNode t){
+    //left and right is balanced if diff is not more than 1
+    if(t == null) return true;
     
+  }
+
 
   //finds the minimum of a node by traversing the left subtree
   public TreeNode findMinBST(TreeNode node){
