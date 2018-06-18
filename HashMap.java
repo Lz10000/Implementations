@@ -101,12 +101,12 @@ class HashMap{
     if(table[hash] != null){
       Node current = table[hash];
       Node prev = null;
-      while(current != null){
+      while(current.next != null){
+        prev = current;
         if(current.key.equals(key)){
           //remove it from previous node referenced
           table[hash] = prev;
         }
-        prev = current;
         current = current.next;
       }
     }
