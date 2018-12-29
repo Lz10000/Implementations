@@ -1,0 +1,69 @@
+Lecture 1, Algorithmic Thinking, Peak Finding
+Overview:
+https uses ssl which uses RSA encryption, but 64 bits isn't enough for these thousands of prime numbers
+
+peak finder:
+one-dimensional array version, a-i are numbers:
+[a,b,c,d,e,f,g,h,i]
+
+example: position 2 is a peak, if and only if b >= a && b >= c
+it's a local property. look to left and look to right, if element is greater than neighbor elements
+
+statement: find the peak if it exists
+
+straightforward algorithm: start from left [1,2,...n/2...n-1,n]
+  -in the case of middle, you look at n/2 elements
+  - worse case theta(n) (lower and upper bound)
+
+lower asymptotic complexity:
+divide & conquer
+[1,2,...n/2-1,n/2,n/2+1 ...n-1,n]
+look at n/2 position, if a[n/2] < a[n/2-1] then only look at left half [1..n/2-1] to look for a peak
+else if a[n/2] < a[n/2+1] then look for a peak in [n/2+1 ...n]
+else n/2 position is a peak
+
+T(n) = T(n/2) + theta(1)
+base case: T(1) = theta(1)
+T(n) = theta(1)+...theta(1) (logn times) = theta(logn)
+
+two-dimensional version:
+n x n matrix
+[][c][][]
+[b][a][d][]
+[][e][][]
+[][][][]
+a is a 2D peak iff a >=b, a >=d, a>=c, a>=e
+
+greedy ascent algorithm:
+[][][][]
+[14][13][12][]
+[15][9][11][17]
+[16][17][19][20]
+
+have to make a choice where to start.
+worse case: theta(nm) complexity, theta(n^2) if m = n
+
+attempt #1: jam binary search into 2d version: (Incorrect, doesn't work)
+pick middle column j=m/2
+find a 1D-peak at (i,j) (x's are the highlighted cells)
+  [][x][]
+i [x][x][x]
+  [][x][]
+    j=m/2
+use (i,j) as a start to find a 1D-peak on row i
+problem: 2D peak may not exist on row i
+
+attempt #2: pick a middle column j=m/2
+find the global max on column j at (i,j)
+compare (i,j-1), (i,j), (i,j+1) pick left cols if (i,j-1) > (i,j) similarly for right
+if (i,j) >= (i,j-1), (i,j+1) >= (i,j) is a 2D peak
+solve the new problem with half the number of cols
+when you have a single col, find the global max, then done.
+
+T(n,m) = T(n,m/2) + theta(n) (theta(n) for finding the max)
+T(n,1) = theta(n) (base case)
+T(n,m) = theta(n)...+theta(n) (log2m) = theta(nlog2m)
+
+Lecture 2, Models of Computation, Document Distance
+What is an algorithm? It's an analog of a computer program
+input -> algorithm -> output

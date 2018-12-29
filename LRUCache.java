@@ -36,7 +36,7 @@ public class LRUCache {
 
     public void set(int key, Object value) {
         Node n = map.get(key);
-        if(null==n){
+        if(n == null){
             n = new Node(key, value);
             map.put(key, n);
             add(n);

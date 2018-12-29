@@ -68,7 +68,6 @@ public class MergeSort {
         //split the array into left and right side arrays
         for (int i = 0; i < mid; i++) {
             left[i] = inputArray[i];
-
         }
         for (int i = mid; i < size; i++) {
             right[i - mid] = inputArray[i];
@@ -99,7 +98,7 @@ public class MergeSort {
             k++;
             i++;
         }
-        while (j < leftSize) {
+        while (j < rightsize) {
             arr[k] = right[j];
             k++;
             j++;

@@ -20,7 +20,7 @@ public static void comb2(String s) {
   comb2("", s);
 }
 
-private static void comb2(String prefix, String s) {
+public void comb2(String prefix, String s) {
     System.out.println(prefix);
     for (int i = 0; i < s.length(); i++)
       comb2(prefix + s.charAt(i), s.substring(i + 1));
@@ -154,7 +154,6 @@ Given a collection of candidate numbers (candidates) and a target number (target
 */
 public List<List<Integer>> combinationSum2(int[] nums, int target) {
    List<List<Integer>> list = new LinkedList<List<Integer>>();
-   Arrays.sort(nums);
    backtrack(list, new ArrayList<Integer>(), nums, target, 0);
    return list;
 }

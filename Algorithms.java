@@ -44,7 +44,7 @@ public String decimalToBinary(int dec){
 public int reverseNum(int num){
   int reverse;
   while(num != 0){
-    reverse = (num%10)+(num*10);
+    reverse = (num%10)+(reverse*10);
     num = num/10;
   }
   return reverse;

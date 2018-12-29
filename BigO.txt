@@ -1,0 +1,98 @@
+Basic for loop that iterates 0 to N
+for i = 0 to N
+print i
+
+O(N)
+
+Nested For loops
+for i = 0 to N:
+  for j = 0 to N:
+    print i + ", "+j
+
+the inner for loop runs O(N) times and it's run N times
+so it's N*N, O(N^2)
+
+Prints even numbers
+for i = 0 to N
+  if i % 2 == 0
+    print i
+
+Still O(N) because we're still going through values from 0 to N (we don't include constants)
+
+Two loops
+prints even, then odds
+for i = 0 to N
+  if i % 2 == 0
+    print i
+
+for i = 0 to N
+  if i % 2 != 0
+    print i
+
+Still O(N)
+
+Print ordered pairs
+for i = 0 to N
+  for j = i to N
+    print i + ", "+j
+O(N^2) still not O(N^2/2) we drop constants
+
+for i = 0 to A.length
+  for j = 0 to B.length
+    print A[i] + ", " + B[j]
+O(A*B) different inputs have different variables
+
+int last_death = Integer.Min
+//step 1: get last death
+for (Person p : people) {
+  last_death = max(last_death, person.death)
+}
+O(P)
+
+//step 2: increment counter for each year someone is alive
+int[] counter = new int[last_death]
+for ( Person person : people ) {
+  for(int year = person.birth; year < person.death; year++) {
+    counter[year]++;
+  }
+}
+L = max life span
+O(P*L)
+
+//step 3: find population peak
+int highest_population = 0
+for(int year = 0; year < counter.length; year++) {
+  highest_population = max(highest_population, counter[year])
+}
+O(Y)
+
+O(P + P*L + Y) -> O(P*L+Y)
+
+Fibonacci
+int fib(int n) {
+  if (n == 0 || n == 1) {
+    return 1;
+  }else{
+    return fib(n-1) + fib(n-1);
+  }
+}
+
+draw a runtime tree
+using fib(k) it has a height of K
+each level doubles # of nodes
+O(2^k)
+
+Fibonacci, part 2
+int fib(int n, int[] memo) {
+  if(n == 0 || n == 1){
+    return 1;
+  }else if (memo[n] == 0){
+    memo[n] = fib(n -1) + fib(n-2);
+  }
+  return memo[n];
+}
+
+not a full complete tree, each level has One node
+O(K)
+
+//CTCI cheat sheet for solving algorithm problems

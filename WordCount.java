@@ -12,11 +12,11 @@ class Book {
   HashMap<String, Integer> counts;
 
   public Book(String[] words){
-    int count = 0;
+    Integer count;
     counts = new HashMap<String, Integer>();
     for(String w : words){
       count = counts.get(w);
-      if(count == 0){
+      if(count == null ){
         counts.put(w, 1);
       }else{
         counts.put(w,counts.get(w)+1);
@@ -25,9 +25,10 @@ class Book {
   }
 
   public int count(String w){
-    int count = 0;
-    count = counts.get(w);
-    return count;
+    if(counts.contains(w)) {
+      return counts.get(w);
+    }
+    return 0;
   }
 }
 
@@ -72,7 +73,7 @@ class Node{
     }
   }
 
-  public int count(String s){
+  public int count(String w){
     Node n = find(w.charAt(0));
     if(n == null){
       return 0;

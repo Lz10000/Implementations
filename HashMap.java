@@ -1,11 +1,11 @@
 /**
 HashMap contains an array of Nodes
-Hashing is the process of converting an object to integer from by using method hashCode()
+Hashing is the process of converting an object to integer form by using method hashCode()
 **/
 
 //hashCode() method of object class returns the memory reference of object in integer form,
 //In HashMap, hashCode() is used to calculate the bucket and therefore calculate the index.
-//HashMap uses equals() to compare the key whether the are equal or not.
+//HashMap uses equals() to compare the key whether they are equal or not.
 
 // bucket is one element of HashMap array. It is used to store nodes. Two or more nodes can have the same bucket.
 //In that case link list structure is used to connect the nodes.
@@ -17,7 +17,7 @@ Hashing is the process of converting an object to integer from by using method h
 
 class HashMap{
   Node[] table;
-  final int loadFactor = 2;
+  final int loadFactor = .75;
   //capacity = #buckets * loadFactor
   final int buckets = 4;
   int capacity = buckets*loadFactor;
@@ -43,7 +43,6 @@ class HashMap{
     if(key == null){
       return;
     }
-    //check if at max capacity
     if(atMaxCapacity){
       increaseCapacity();
     }
@@ -65,6 +64,7 @@ class HashMap{
           table[hash] = n;
           size++;
         }
+        //otherwise keep iterating until the end of the linked list
         current = current.next;
       }
       //add to end
